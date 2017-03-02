@@ -62,11 +62,14 @@ public class FXMLDocumentController implements Initializable {
     private Button resta;
     @FXML
     private Text historico;
+    @FXML
+    private Button coma;
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
-
-        if (event.getSource() == cero) {
+        if (event.getSource() == coma) {
+            this.resultado.appendText(".");
+        } else if (event.getSource() == cero) {
             if (entrar) {
                 this.resultado.setText("0");
             } else {
@@ -97,7 +100,7 @@ public class FXMLDocumentController implements Initializable {
                 this.resultado.appendText("3");
             }
             entrar = false;
-            
+
         } else if (event.getSource() == cuatro) {
             if (entrar) {
                 this.resultado.setText("4");
@@ -105,7 +108,7 @@ public class FXMLDocumentController implements Initializable {
                 this.resultado.appendText("4");
             }
             entrar = false;
-            
+
         } else if (event.getSource() == cinco) {
             if (entrar) {
                 this.resultado.setText("5");
@@ -113,7 +116,7 @@ public class FXMLDocumentController implements Initializable {
                 this.resultado.appendText("5");
             }
             entrar = false;
-            
+
         } else if (event.getSource() == seis) {
             if (entrar) {
                 this.resultado.setText("6");
@@ -121,7 +124,7 @@ public class FXMLDocumentController implements Initializable {
                 this.resultado.appendText("6");
             }
             entrar = false;
-            
+
         } else if (event.getSource() == siete) {
             if (entrar) {
                 this.resultado.setText("7");
@@ -129,7 +132,7 @@ public class FXMLDocumentController implements Initializable {
                 this.resultado.appendText("7");
             }
             entrar = false;
-            
+
         } else if (event.getSource() == ocho) {
             if (entrar) {
                 this.resultado.setText("8");
@@ -137,7 +140,7 @@ public class FXMLDocumentController implements Initializable {
                 this.resultado.appendText("8");
             }
             entrar = false;
-            
+
         } else if (event.getSource() == nueve) {
             if (entrar) {
                 this.resultado.setText("9");
@@ -145,18 +148,17 @@ public class FXMLDocumentController implements Initializable {
                 this.resultado.appendText("9");
             }
             entrar = false;
-            
 
         } else if (event.getSource() == suma) {
             antes();
             this.historico.setText(this.historico.getText() + this.resultado.getText() + " + ");
             hace = "sumar";
-            
+
         } else if (event.getSource() == resta) {
             antes();
             this.historico.setText(this.historico.getText() + this.resultado.getText() + " - ");
             hace = "restar";
-            
+
         } else if (event.getSource() == multiplicacion) {
             antes();
             this.historico.setText(this.historico.getText() + this.resultado.getText() + " * ");
