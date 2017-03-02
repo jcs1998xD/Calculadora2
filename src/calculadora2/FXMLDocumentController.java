@@ -68,7 +68,12 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) {
         if (event.getSource() == coma) {
-            this.resultado.appendText(".");
+            if (entrar) {
+                this.resultado.setText("0.");
+            } else {
+                this.resultado.appendText(".");
+            }
+            entrar = false;
         } else if (event.getSource() == cero) {
             if (entrar) {
                 this.resultado.setText("0");
