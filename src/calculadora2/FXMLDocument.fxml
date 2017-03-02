@@ -43,7 +43,7 @@
             <Button fx:id="limpiar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="210.0" prefWidth="153.0" text="CL" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <TextField fx:id="resultado" alignment="BOTTOM_RIGHT" editable="false" prefHeight="92.0" prefWidth="490.0" promptText="0">
+      <TextField fx:id="resultado" alignment="BOTTOM_RIGHT" editable="false" prefHeight="92.0" prefWidth="490.0" text="0">
          <font>
             <Font size="32.0" />
          </font>

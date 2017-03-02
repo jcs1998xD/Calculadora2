@@ -24,6 +24,7 @@ public class FXMLDocumentController implements Initializable {
 
     String hace = "";
     double num1 = 0, num2 = 0;
+    boolean entrar = true;
 
     @FXML
     private TextField resultado;
@@ -66,49 +67,105 @@ public class FXMLDocumentController implements Initializable {
     private void handleButtonAction(ActionEvent event) {
 
         if (event.getSource() == cero) {
-            this.resultado.appendText("0");
+            if (entrar) {
+                this.resultado.setText("0");
+            } else {
+                this.resultado.appendText("0");
+            }
+            entrar = false;
+
         } else if (event.getSource() == uno) {
-            this.resultado.appendText("1");
+            if (entrar) {
+                this.resultado.setText("1");
+            } else {
+                this.resultado.appendText("1");
+            }
+            entrar = false;
+
         } else if (event.getSource() == dos) {
-            this.resultado.appendText("2");
+            if (entrar) {
+                this.resultado.setText("2");
+            } else {
+                this.resultado.appendText("2");
+            }
+            entrar = false;
+
         } else if (event.getSource() == tres) {
-            this.resultado.appendText("3");
+            if (entrar) {
+                this.resultado.setText("3");
+            } else {
+                this.resultado.appendText("3");
+            }
+            entrar = false;
+            
         } else if (event.getSource() == cuatro) {
-            this.resultado.appendText("4");
+            if (entrar) {
+                this.resultado.setText("4");
+            } else {
+                this.resultado.appendText("4");
+            }
+            entrar = false;
+            
         } else if (event.getSource() == cinco) {
-            this.resultado.appendText("5");
+            if (entrar) {
+                this.resultado.setText("5");
+            } else {
+                this.resultado.appendText("5");
+            }
+            entrar = false;
+            
         } else if (event.getSource() == seis) {
-            this.resultado.appendText("6");
+            if (entrar) {
+                this.resultado.setText("6");
+            } else {
+                this.resultado.appendText("6");
+            }
+            entrar = false;
+            
         } else if (event.getSource() == siete) {
-            this.resultado.appendText("7");
+            if (entrar) {
+                this.resultado.setText("7");
+            } else {
+                this.resultado.appendText("7");
+            }
+            entrar = false;
+            
         } else if (event.getSource() == ocho) {
-            this.resultado.appendText("8");
+            if (entrar) {
+                this.resultado.setText("8");
+            } else {
+                this.resultado.appendText("8");
+            }
+            entrar = false;
+            
         } else if (event.getSource() == nueve) {
-            this.resultado.appendText("9");
+            if (entrar) {
+                this.resultado.setText("9");
+            } else {
+                this.resultado.appendText("9");
+            }
+            entrar = false;
+            
 
         } else if (event.getSource() == suma) {
             antes();
             this.historico.setText(this.historico.getText() + this.resultado.getText() + " + ");
             hace = "sumar";
-            this.resultado.setText("");
-
+            
         } else if (event.getSource() == resta) {
             antes();
             this.historico.setText(this.historico.getText() + this.resultado.getText() + " - ");
             hace = "restar";
-            this.resultado.setText("");
-
+            
         } else if (event.getSource() == multiplicacion) {
             antes();
             this.historico.setText(this.historico.getText() + this.resultado.getText() + " * ");
             hace = "multiplicar";
-            this.resultado.setText("");
 
         } else if (event.getSource() == division) {
             antes();
             this.historico.setText(this.historico.getText() + this.resultado.getText() + " / ");
             hace = "dividir";
-            this.resultado.setText("");
 
         } else if (event.getSource() == igual) {
             this.historico.setText("");
@@ -116,15 +173,15 @@ public class FXMLDocumentController implements Initializable {
             this.resultado.setText(String.valueOf(num1));
             hace = "";
             num1 = 0;
-            
 
         } else if (event.getSource() == limpiar) {
-            this.resultado.setText("");
+            this.resultado.setText("0");
         }
 
     }
 
     private void antes() {
+        entrar = true;
         if (hace.isEmpty()) {
             num1 = Double.parseDouble(this.resultado.getText());
         } else {
