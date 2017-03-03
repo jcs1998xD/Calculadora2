@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
@@ -21,10 +22,10 @@ import javafx.scene.text.Text;
  * @author daw
  */
 public class FXMLDocumentController implements Initializable {
-
     String hace = "";
     double num1 = 0, num2 = 0;
     boolean entrar = true;
+    int contador = 0;
 
     @FXML
     private TextField resultado;
@@ -61,9 +62,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button resta;
     @FXML
-    private Text historico;
+    private Text operaciones;
     @FXML
     private Button coma;
+    @FXML
+    private TextArea historicoText;
+    @FXML
+    private Button historicoButtom;
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -155,34 +160,35 @@ public class FXMLDocumentController implements Initializable {
             entrar = false;
 
         } else if (event.getSource() == suma) {
+            if (!String.valueOf(this.operaciones.getText().charAt(this.operaciones.getText().length()-2)).equalsIgnoreCase("+")){
+            this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " + ");
             antes();
-            this.historico.setText(this.historico.getText() + this.resultado.getText() + " + ");
             hace = "sumar";
-
-        } else if (event.getSource() == resta) {
-            antes();
-            this.historico.setText(this.historico.getText() + this.resultado.getText() + " - ");
-            hace = "restar";
+            }
 
         } else if (event.getSource() == multiplicacion) {
+            this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " * ");
             antes();
-            this.historico.setText(this.historico.getText() + this.resultado.getText() + " * ");
             hace = "multiplicar";
 
-        } else if (event.getSource() == division) {
+        } else if (event.getSource() == division) {            
+            this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " / ");
             antes();
-            this.historico.setText(this.historico.getText() + this.resultado.getText() + " / ");
             hace = "dividir";
 
         } else if (event.getSource() == igual) {
-            this.historico.setText("");
+            contador++;
+            this.historicoText.appendText(contador + " --> " +this.operaciones.getText() + this.resultado.getText() + " = ");
+            this.operaciones.setText("");
             antes();
             this.resultado.setText(String.valueOf(num1));
+            this.historicoText.appendText(String.valueOf(num1) + "\n ");
             hace = "";
             num1 = 0;
 
         } else if (event.getSource() == limpiar) {
             this.resultado.setText("0");
+            entrar = true;
         }
 
     }
@@ -193,6 +199,7 @@ public class FXMLDocumentController implements Initializable {
             num1 = Double.parseDouble(this.resultado.getText());
         } else {
             num1 = operacion(hace, num1);
+            this.resultado.setText(String.valueOf(num1));
         }
     }
 
@@ -218,6 +225,25 @@ public class FXMLDocumentController implements Initializable {
         return resultado;
     }
 
+    
+    @FXML
+    private void restar(ActionEvent event){
+            this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " - ");
+            antes();
+            hace = "restar";  
+    }
+   
+    @FXML
+    private void historico(ActionEvent event){
+        if (historicoText.isVisible()){
+        this.historicoText.setVisible(false);
+        } else {
+            this.historicoText.setVisible(true);
+        }
+    }
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
