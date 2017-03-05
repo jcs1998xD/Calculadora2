@@ -22,6 +22,7 @@ import javafx.scene.text.Text;
  * @author daw
  */
 public class FXMLDocumentController implements Initializable {
+
     String hace = "";
     double num1 = 0, num2 = 0;
     boolean entrar = true;
@@ -73,12 +74,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) {
         if (event.getSource() == coma) {
-            if (entrar) {
-                this.resultado.setText("0.");
-            } else {
-                this.resultado.appendText(".");
+            if (this.resultado.getText().charAt(this.resultado.getText().length() - 1) != '.') {
+                if (entrar) {
+                    this.resultado.setText("0.");
+                } else {
+                    this.resultado.appendText(".");
+                }
+                entrar = false;
             }
-            entrar = false;
         } else if (event.getSource() == cero) {
             if (entrar) {
                 this.resultado.setText("0");
@@ -160,25 +163,56 @@ public class FXMLDocumentController implements Initializable {
             entrar = false;
 
         } else if (event.getSource() == suma) {
-            if (!String.valueOf(this.operaciones.getText().charAt(this.operaciones.getText().length()-2)).equalsIgnoreCase("+")){
-            this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " + ");
-            antes();
-            hace = "sumar";
+            if (this.operaciones.getText().isEmpty() || this.operaciones.getText().charAt(this.operaciones.getText().length() - 2) != '+'
+                    || (this.operaciones.getText().charAt(this.operaciones.getText().length() - 2) == '+' && this.entrar == false)) {
+
+                if (entrar) {
+                    this.operaciones.setText(this.operaciones.getText().substring(0, this.operaciones.getText().length() - 3) +  " + ");
+                    antes();
+                    hace = "sumar";
+                } else {
+                    this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " + ");
+                    antes();
+                    hace = "sumar";
+                }
+
             }
 
         } else if (event.getSource() == multiplicacion) {
-            this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " * ");
-            antes();
-            hace = "multiplicar";
+            if (this.operaciones.getText().isEmpty() || this.operaciones.getText().charAt(this.operaciones.getText().length() - 2) != '*'
+                    || (this.operaciones.getText().charAt(this.operaciones.getText().length() - 2) == '*' && this.entrar == false)) {
 
-        } else if (event.getSource() == division) {            
-            this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " / ");
-            antes();
-            hace = "dividir";
+                if (entrar) {
+                    this.operaciones.setText(this.operaciones.getText().substring(0, this.operaciones.getText().length() - 3) +  " * ");
+                    antes();
+                    hace = "multiplicar";
+                } else {
+                    this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " * ");
+                    antes();
+                    hace = "multiplicar";
+                }
+
+            }
+
+        } else if (event.getSource() == division) {
+            if (this.operaciones.getText().isEmpty() || this.operaciones.getText().charAt(this.operaciones.getText().length() - 2) != '/'
+                    || (this.operaciones.getText().charAt(this.operaciones.getText().length() - 2) == '/' && this.entrar == false)) {
+
+                if (entrar) {
+                    this.operaciones.setText(this.operaciones.getText().substring(0, this.operaciones.getText().length() - 3) +  " / ");
+                    antes();
+                    hace = "dividir";
+                } else {
+                    this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " / ");
+                    antes();
+                    hace = "dividir";
+                }
+
+            }
 
         } else if (event.getSource() == igual) {
             contador++;
-            this.historicoText.appendText(contador + " --> " +this.operaciones.getText() + this.resultado.getText() + " = ");
+            this.historicoText.appendText(contador + " --> " + this.operaciones.getText() + this.resultado.getText() + " = ");
             this.operaciones.setText("");
             antes();
             this.resultado.setText(String.valueOf(num1));
@@ -194,13 +228,16 @@ public class FXMLDocumentController implements Initializable {
     }
 
     private void antes() {
-        entrar = true;
+     
         if (hace.isEmpty()) {
             num1 = Double.parseDouble(this.resultado.getText());
         } else {
+            if (entrar == false){
             num1 = operacion(hace, num1);
             this.resultado.setText(String.valueOf(num1));
+            }
         }
+        entrar = true;
     }
 
     private double operacion(String operacion, double num1) {
@@ -225,25 +262,33 @@ public class FXMLDocumentController implements Initializable {
         return resultado;
     }
 
-    
     @FXML
-    private void restar(ActionEvent event){
-            this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " - ");
-            antes();
-            hace = "restar";  
+    private void restar(ActionEvent event) {
+        if (this.operaciones.getText().isEmpty() || this.operaciones.getText().charAt(this.operaciones.getText().length() - 2) != '-'
+                || (this.operaciones.getText().charAt(this.operaciones.getText().length() - 2) == '-' && this.entrar == false)) {
+
+            if (entrar) {
+                this.operaciones.setText(this.operaciones.getText().substring(0, this.operaciones.getText().length() - 3) + " - ");
+                antes();
+                hace = "restar";
+            } else {
+                this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " - ");
+                antes();
+                hace = "restar";
+            }
+
+        }
     }
-   
+
     @FXML
-    private void historico(ActionEvent event){
-        if (historicoText.isVisible()){
-        this.historicoText.setVisible(false);
+    private void historico(ActionEvent event) {
+        if (historicoText.isVisible()) {
+            this.historicoText.setVisible(false);
         } else {
             this.historicoText.setVisible(true);
         }
     }
-    
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
