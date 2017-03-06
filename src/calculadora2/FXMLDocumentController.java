@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -69,7 +70,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextArea historicoText;
     @FXML
-    private Button historicoButtom;
+    private CheckBox historicocheck;
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -282,10 +283,10 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void historico(ActionEvent event) {
-        if (historicoText.isVisible()) {
-            this.historicoText.setVisible(false);
-        } else {
+        if (this.historicocheck.isSelected()) {
             this.historicoText.setVisible(true);
+        } else {
+            this.historicoText.setVisible(false);
         }
     }
 

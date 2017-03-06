@@ -58,10 +58,10 @@
             <Font size="22.0" />
          </font></Button>
       <TextArea fx:id="historicoText" editable="false" layoutX="-3.0" layoutY="426.0" prefHeight="200.0" prefWidth="253.0" visible="false" />
-      <Button fx:id="historicoButtom" layoutX="251.0" layoutY="523.0" mnemonicParsing="false" onAction="#historico" prefHeight="105.0" prefWidth="240.0" text="Histórico">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
+      <CheckBox fx:id="historicocheck" alignment="CENTER" contentDisplay="TOP" layoutX="251.0" layoutY="522.0" mnemonicParsing="false" onAction="#historico" prefHeight="106.0" prefWidth="240.0" scaleShape="false" text="Histórico" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </CheckBox>
     </children>
 </AnchorPane>
