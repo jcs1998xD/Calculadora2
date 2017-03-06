@@ -79,7 +79,9 @@ public class FXMLDocumentController implements Initializable {
                 if (entrar) {
                     this.resultado.setText("0.");
                 } else {
+                    if(!this.resultado.getText().contains(".")){
                     this.resultado.appendText(".");
+                    }
                 }
                 entrar = false;
             }
@@ -183,7 +185,8 @@ public class FXMLDocumentController implements Initializable {
                 if (entrar) {
                     this.operaciones.setText(this.operaciones.getText().substring(0, this.operaciones.getText().length() - 3) + " * ");
                     hace = "multiplicar";
-                } else {
+
+                }else {
                     this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " * ");
                     antes(true);
                     hace = "multiplicar";
