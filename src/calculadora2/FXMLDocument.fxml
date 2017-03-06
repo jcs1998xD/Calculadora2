@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
@@ -25,25 +26,137 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="siete" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="117.0" prefWidth="136.0" stylesheets="@../myCss.css" text="7" />
-            <Button fx:id="ocho" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="123.0" prefWidth="209.0" stylesheets="@../myCss.css" text="8" GridPane.columnIndex="1" />
-            <Button fx:id="nueve" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="112.0" prefWidth="153.0" stylesheets="@../myCss.css" text="9" GridPane.columnIndex="2" />
-            <Button fx:id="division" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="131.0" prefWidth="122.0" stylesheets="@../myCss.css" text="/" GridPane.columnIndex="3" />
-            <Button fx:id="cuatro" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="101.0" prefWidth="132.0" stylesheets="@../myCss.css" text="4" GridPane.rowIndex="1" />
-            <Button fx:id="multiplicacion" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="114.0" prefWidth="159.0" stylesheets="@../myCss.css" text="*" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Button fx:id="seis" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="143.0" prefWidth="139.0" stylesheets="@../myCss.css" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button fx:id="cinco" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="145.0" prefWidth="127.0" stylesheets="@../myCss.css" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="uno" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="136.0" prefWidth="195.0" stylesheets="@../myCss.css" text="1" GridPane.rowIndex="2" />
-            <Button fx:id="suma" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="162.0" prefWidth="136.0" stylesheets="@../myCss.css" text="+" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Button fx:id="cero" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="173.0" prefWidth="160.0" stylesheets="@../myCss.css" text="0" GridPane.rowIndex="3" />
-            <Button fx:id="resta" mnemonicParsing="false" onAction="#restar" prefHeight="136.0" prefWidth="189.0" stylesheets="@../myCss.css" text="-" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Button fx:id="tres" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="175.0" prefWidth="161.0" stylesheets="@../myCss.css" text="3" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button fx:id="dos" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="141.0" prefWidth="164.0" stylesheets="@../myCss.css" text="2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="limpiar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="210.0" prefWidth="153.0" stylesheets="@../myCss.css" text="CL" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button fx:id="coma" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="117.0" prefWidth="148.0" stylesheets="@../myCss.css" text="," GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Button fx:id="siete" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="117.0" prefWidth="136.0" text="7" textFill="WHITE">
+               <stylesheets>
+                  <URL value="@../myCss.css" />
+                  <URL value="@../css/myCss.css" />
+               </stylesheets>
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font></Button>
+            <Button fx:id="ocho" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="123.0" prefWidth="209.0" text="8" textFill="WHITE" GridPane.columnIndex="1">
+               <stylesheets>
+                  <URL value="@../myCss.css" />
+                  <URL value="@../css/myCss.css" />
+               </stylesheets>
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font></Button>
+            <Button fx:id="nueve" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="112.0" prefWidth="153.0" text="9" textFill="WHITE" GridPane.columnIndex="2">
+               <stylesheets>
+                  <URL value="@../myCss.css" />
+                  <URL value="@../css/myCss.css" />
+               </stylesheets>
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font></Button>
+            <Button fx:id="division" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="131.0" prefWidth="122.0" text="/" textFill="WHITE" GridPane.columnIndex="3">
+               <stylesheets>
+                  <URL value="@../myCss.css" />
+                  <URL value="@../css/myCss.css" />
+               </stylesheets>
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font></Button>
+            <Button fx:id="cuatro" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="101.0" prefWidth="132.0" text="4" textFill="WHITE" GridPane.rowIndex="1">
+               <stylesheets>
+                  <URL value="@../myCss.css" />
+                  <URL value="@../css/myCss.css" />
+               </stylesheets>
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font></Button>
+            <Button fx:id="multiplicacion" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="114.0" prefWidth="159.0" text="*" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <stylesheets>
+                  <URL value="@../myCss.css" />
+                  <URL value="@../css/myCss.css" />
+               </stylesheets>
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font></Button>
+            <Button fx:id="seis" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="143.0" prefWidth="139.0" text="6" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <stylesheets>
+                  <URL value="@../myCss.css" />
+                  <URL value="@../css/myCss.css" />
+               </stylesheets>
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font></Button>
+            <Button fx:id="cinco" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="145.0" prefWidth="127.0" text="5" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <stylesheets>
+                  <URL value="@../myCss.css" />
+                  <URL value="@../css/myCss.css" />
+               </stylesheets>
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font></Button>
+            <Button fx:id="uno" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="136.0" prefWidth="195.0" text="1" textFill="WHITE" GridPane.rowIndex="2">
+               <stylesheets>
+                  <URL value="@../myCss.css" />
+                  <URL value="@../css/myCss.css" />
+               </stylesheets>
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font></Button>
+            <Button fx:id="suma" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="162.0" prefWidth="136.0" text="+" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <stylesheets>
+                  <URL value="@../myCss.css" />
+                  <URL value="@../css/myCss.css" />
+               </stylesheets>
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font></Button>
+            <Button fx:id="cero" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="173.0" prefWidth="160.0" text="0" textFill="WHITE" GridPane.rowIndex="3">
+               <stylesheets>
+                  <URL value="@../myCss.css" />
+                  <URL value="@../css/myCss.css" />
+               </stylesheets>
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font></Button>
+            <Button fx:id="resta" mnemonicParsing="false" onAction="#restar" prefHeight="136.0" prefWidth="189.0" text="-" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <stylesheets>
+                  <URL value="@../myCss.css" />
+                  <URL value="@../css/myCss.css" />
+               </stylesheets>
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font></Button>
+            <Button fx:id="tres" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="175.0" prefWidth="161.0" text="3" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <stylesheets>
+                  <URL value="@../myCss.css" />
+                  <URL value="@../css/myCss.css" />
+               </stylesheets>
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font></Button>
+            <Button fx:id="dos" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="141.0" prefWidth="164.0" text="2" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <stylesheets>
+                  <URL value="@../myCss.css" />
+                  <URL value="@../css/myCss.css" />
+               </stylesheets>
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font></Button>
+            <Button fx:id="limpiar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="210.0" prefWidth="153.0" text="CL" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <stylesheets>
+                  <URL value="@../myCss.css" />
+                  <URL value="@../css/myCss.css" />
+               </stylesheets>
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font></Button>
+            <Button fx:id="coma" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="117.0" prefWidth="148.0" text="," textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <stylesheets>
+                  <URL value="@../myCss.css" />
+                  <URL value="@../css/myCss.css" />
+               </stylesheets>
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font></Button>
          </children>
       </GridPane>
-      <TextField fx:id="resultado" alignment="BOTTOM_RIGHT" editable="false" prefHeight="92.0" prefWidth="490.0" text="0">
+      <TextField fx:id="resultado" alignment="BOTTOM_RIGHT" editable="false" prefHeight="92.0" prefWidth="490.0" stylesheets="@../css/myCss.css" text="0">
          <font>
             <Font size="32.0" />
          </font>
@@ -53,15 +166,18 @@
             <Font size="21.0" />
          </font>
       </Text>
-      <Button fx:id="igual" layoutX="251.0" layoutY="426.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="99.0" prefWidth="240.0" text="=">
+      <Button fx:id="igual" layoutX="251.0" layoutY="426.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="99.0" prefWidth="240.0" stylesheets="@../css/myCss.css" text="=" textFill="WHITE">
          <font>
-            <Font size="22.0" />
+            <Font name="System Bold" size="37.0" />
          </font></Button>
-      <TextArea fx:id="historicoText" editable="false" layoutX="-3.0" layoutY="426.0" prefHeight="200.0" prefWidth="253.0" visible="false" />
-      <CheckBox fx:id="historicocheck" alignment="CENTER" contentDisplay="TOP" layoutX="251.0" layoutY="522.0" mnemonicParsing="false" onAction="#historico" prefHeight="106.0" prefWidth="240.0" scaleShape="false" text="Histórico" textAlignment="CENTER">
+      <TextArea fx:id="historicoText" editable="false" layoutX="-3.0" layoutY="426.0" prefHeight="200.0" prefWidth="254.0" stylesheets="@../css/myCss.css" visible="false" />
+      <CheckBox fx:id="historicocheck" alignment="CENTER" contentDisplay="TOP" layoutX="251.0" layoutY="522.0" mnemonicParsing="false" onAction="#historico" prefHeight="106.0" prefWidth="240.0" scaleShape="false" stylesheets="@../css/myCss.css" text="Histórico" textAlignment="CENTER">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
       </CheckBox>
     </children>
 </AnchorPane>

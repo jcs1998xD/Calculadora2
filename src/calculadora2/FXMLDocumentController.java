@@ -164,48 +164,42 @@ public class FXMLDocumentController implements Initializable {
             entrar = false;
 
         } else if (event.getSource() == suma) {
-            if (this.operaciones.getText().isEmpty() || this.operaciones.getText().charAt(this.operaciones.getText().length() - 2) != '+'
-                    || (this.operaciones.getText().charAt(this.operaciones.getText().length() - 2) == '+' && this.entrar == false)) {
+            if (comprobar("+")) {
 
                 if (entrar) {
-                    this.operaciones.setText(this.operaciones.getText().substring(0, this.operaciones.getText().length() - 3) +  " + ");
-                    antes();
+                    this.operaciones.setText(this.operaciones.getText().substring(0, this.operaciones.getText().length() - 3) + " + ");
                     hace = "sumar";
                 } else {
                     this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " + ");
-                    antes();
+                    antes(false);
                     hace = "sumar";
                 }
 
             }
 
         } else if (event.getSource() == multiplicacion) {
-            if (this.operaciones.getText().isEmpty() || this.operaciones.getText().charAt(this.operaciones.getText().length() - 2) != '*'
-                    || (this.operaciones.getText().charAt(this.operaciones.getText().length() - 2) == '*' && this.entrar == false)) {
+            if (comprobar("*")) {
 
                 if (entrar) {
-                    this.operaciones.setText(this.operaciones.getText().substring(0, this.operaciones.getText().length() - 3) +  " * ");
-                    antes();
+                    this.operaciones.setText(this.operaciones.getText().substring(0, this.operaciones.getText().length() - 3) + " * ");
                     hace = "multiplicar";
                 } else {
                     this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " * ");
-                    antes();
+                    antes(true);
                     hace = "multiplicar";
                 }
 
             }
 
         } else if (event.getSource() == division) {
-            if (this.operaciones.getText().isEmpty() || this.operaciones.getText().charAt(this.operaciones.getText().length() - 2) != '/'
-                    || (this.operaciones.getText().charAt(this.operaciones.getText().length() - 2) == '/' && this.entrar == false)) {
+            if (comprobar("/")) {
 
                 if (entrar) {
-                    this.operaciones.setText(this.operaciones.getText().substring(0, this.operaciones.getText().length() - 3) +  " / ");
-                    antes();
+                    this.operaciones.setText(this.operaciones.getText().substring(0, this.operaciones.getText().length() - 3) + " / ");
                     hace = "dividir";
                 } else {
                     this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " / ");
-                    antes();
+                    antes(true);
                     hace = "dividir";
                 }
 
@@ -215,9 +209,9 @@ public class FXMLDocumentController implements Initializable {
             contador++;
             this.historicoText.appendText(contador + " --> " + this.operaciones.getText() + this.resultado.getText() + " = ");
             this.operaciones.setText("");
-            antes();
+            antes(false);
             this.resultado.setText(String.valueOf(num1));
-            this.historicoText.appendText(String.valueOf(num1) + "\n ");
+            this.historicoText.appendText(String.valueOf(num1) + "\n");
             hace = "";
             num1 = 0;
 
@@ -228,15 +222,13 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
-    private void antes() {
-     
+    private void antes(boolean preferencia) {
+
         if (hace.isEmpty()) {
             num1 = Double.parseDouble(this.resultado.getText());
         } else {
-            if (entrar == false){
             num1 = operacion(hace, num1);
             this.resultado.setText(String.valueOf(num1));
-            }
         }
         entrar = true;
     }
@@ -263,18 +255,27 @@ public class FXMLDocumentController implements Initializable {
         return resultado;
     }
 
+    private boolean comprobar(String operacion) {
+        String operaciones = this.operaciones.getText();
+        if (operaciones.isEmpty() || operaciones.substring(operaciones.length() - 2) != operacion
+                || (operaciones.substring(operaciones.length() - 2) == operacion && this.entrar == false)) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
     @FXML
     private void restar(ActionEvent event) {
-        if (this.operaciones.getText().isEmpty() || this.operaciones.getText().charAt(this.operaciones.getText().length() - 2) != '-'
-                || (this.operaciones.getText().charAt(this.operaciones.getText().length() - 2) == '-' && this.entrar == false)) {
+        if (comprobar("-")) {
 
             if (entrar) {
                 this.operaciones.setText(this.operaciones.getText().substring(0, this.operaciones.getText().length() - 3) + " - ");
-                antes();
                 hace = "restar";
             } else {
                 this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " - ");
-                antes();
+                antes(false);
                 hace = "restar";
             }
 

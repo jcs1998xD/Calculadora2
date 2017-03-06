@@ -1,0 +1,43 @@
+
+.button{
+    -fx-background-color:#4b4b4b;
+    -fx-border-color: black;
+}
+.button:hover{
+    -fx-text-fill: yellow;
+}
+.button:active{
+    -fx-text-fill: white;
+}
+
+#division{
+    -fx-background-color:#363636;
+}
+#multiplicacion{
+    -fx-background-color:#363636;
+}
+#resta{
+    -fx-background-color:#363636;
+}
+#suma{
+    -fx-background-color:#363636;
+}
+#limpiar{
+    -fx-background-color:#42afff;
+}
+#igual{
+    -fx-background-color:#ffa942;
+    -fx-border-color:none;
+}
+/*#historicoText:active{
+    -fx-background-color:#4b4b4b;
+    -fx-border-color:none;
+}
+#historicoText{
+    -fx-background-color:black;
+    -fx-border-color:none;
+}*/
+#resultado{
+    -fx-background-color:#1c1c1c;
+    -fx-text-fill:white;
+}
