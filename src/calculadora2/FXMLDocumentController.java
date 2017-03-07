@@ -16,6 +16,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 /**
@@ -24,8 +25,8 @@ import javafx.scene.text.Text;
  */
 public class FXMLDocumentController implements Initializable {
 
-    String hace = "", haceAnterior = "sumar";
-    double num1 = 0, num2 = 0,num3 = 0;
+    String hace = "", haceAnterior = "sumar1";
+    double num1 = 0, num2 = 0, num3 = 0;
     boolean entrar = true;
     int contador = 0;
 
@@ -71,6 +72,8 @@ public class FXMLDocumentController implements Initializable {
     private TextArea historicoText;
     @FXML
     private CheckBox historicocheck;
+    @FXML
+    private AnchorPane fondo;
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -78,10 +81,8 @@ public class FXMLDocumentController implements Initializable {
             if (this.resultado.getText().charAt(this.resultado.getText().length() - 1) != '.') {
                 if (entrar) {
                     this.resultado.setText("0.");
-                } else {
-                    if(!this.resultado.getText().contains(".")){
+                } else if (!this.resultado.getText().contains(".")) {
                     this.resultado.appendText(".");
-                    }
                 }
                 entrar = false;
             }
@@ -168,8 +169,15 @@ public class FXMLDocumentController implements Initializable {
         } else if (event.getSource() == suma) {
             if (comprobar("+")) {
 
-                if (entrar) {
-                    this.operaciones.setText(this.operaciones.getText().substring(0, this.operaciones.getText().length() - 3) + " + ");
+                if (entrar && (hace.equalsIgnoreCase("multiplicar") || hace.equalsIgnoreCase("dividir"))) {
+                    cambiarSigno("+");
+                    if (haceAnterior.equalsIgnoreCase("sumar1")) {
+                        deshace();
+                    }
+                    antes(false);
+                    hace = "sumar";
+                } else if (entrar) {
+                    cambiarSigno("+");
                     hace = "sumar";
                 } else {
                     this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " + ");
@@ -182,15 +190,18 @@ public class FXMLDocumentController implements Initializable {
         } else if (event.getSource() == multiplicacion) {
             if (comprobar("*")) {
 
-                if (entrar) {
-                    this.operaciones.setText(this.operaciones.getText().substring(0, this.operaciones.getText().length() - 3) + " * ");
+                if (entrar && (hace.equalsIgnoreCase("sumar") || hace.equalsIgnoreCase("restar"))){
+                    
+                }
+                else if (entrar) {
+                    cambiarSigno("*");
                     hace = "multiplicar";
 
-                }else {
+                } else {
                     this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " * ");
                     antes(true);
                     hace = "multiplicar";
-                    
+
                 }
 
             }
@@ -199,7 +210,7 @@ public class FXMLDocumentController implements Initializable {
             if (comprobar("/")) {
 
                 if (entrar) {
-                    this.operaciones.setText(this.operaciones.getText().substring(0, this.operaciones.getText().length() - 3) + " / ");
+                    cambiarSigno("/");
                     hace = "dividir";
                 } else {
                     this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " / ");
@@ -219,7 +230,6 @@ public class FXMLDocumentController implements Initializable {
             hace = "";
             num1 = 0;
             num3 = 0;
-            
 
         } else if (event.getSource() == limpiar) {
             this.resultado.setText("0");
@@ -228,36 +238,45 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
+    private void deshace() {
+        num1 = num3;
+        num3 = 0;
+
+    }
+
     private void antes(boolean preferencia) {
 
-        if (hace.isEmpty() && preferencia){
+        if (hace.isEmpty() && preferencia) {
             num3 = Double.parseDouble(this.resultado.getText());
-        }else if (hace.isEmpty()) {
+        } else if (hace.isEmpty()) {
             num1 = Double.parseDouble(this.resultado.getText());
-        } else if (preferencia && (hace.equalsIgnoreCase("multiplicar") || hace.equalsIgnoreCase("dividir"))){
-            num3 = operacion(hace,num3,0);   
+        } else if (preferencia && (hace.equalsIgnoreCase("multiplicar") || hace.equalsIgnoreCase("dividir"))) {
+            num3 = operacion(hace, num3, 0);
             this.resultado.setText(String.valueOf(num3));
         } else if (preferencia) {
             num3 = Double.parseDouble(this.resultado.getText());
             haceAnterior = hace;
-        } else if (hace.equalsIgnoreCase("multiplicar") || hace.equalsIgnoreCase("dividir")){
-            num3 = operacion(hace,num3,0);
-            num1 = operacion(haceAnterior,num1,num3);
+        } else if (hace.equalsIgnoreCase("multiplicar") || hace.equalsIgnoreCase("dividir")) {
+            num3 = operacion(hace, num3, 0);
+            num1 = operacion(haceAnterior, num1, num3);
             this.resultado.setText(String.valueOf(num1));
         } else {
-            num1 = operacion(hace, num1,0);
+            num1 = operacion(hace, num1, 0);
             this.resultado.setText(String.valueOf(num1));
         }
         entrar = true;
     }
 
-    private double operacion(String operacion, double num1,double num3) {
+    private double operacion(String operacion, double num1, double num3) {
         double resultado = 0;
         num2 = Double.parseDouble(this.resultado.getText());
-        if (num3 != 0){
+        if (num3 != 0) {
             num2 = num3;
         }
         switch (operacion) {
+            case "sumar1":
+                resultado = num1 + num2;
+                break;
             case "sumar":
                 resultado = num1 + num2;
                 break;
@@ -292,7 +311,7 @@ public class FXMLDocumentController implements Initializable {
         if (comprobar("-")) {
 
             if (entrar) {
-                this.operaciones.setText(this.operaciones.getText().substring(0, this.operaciones.getText().length() - 3) + " - ");
+                cambiarSigno("-");
                 hace = "restar";
             } else {
                 this.operaciones.setText(this.operaciones.getText() + this.resultado.getText() + " - ");
@@ -310,6 +329,10 @@ public class FXMLDocumentController implements Initializable {
         } else {
             this.historicoText.setVisible(false);
         }
+    }
+
+    private void cambiarSigno(String signo) {
+        this.operaciones.setText(this.operaciones.getText().substring(0, this.operaciones.getText().length() - 3) + " " + signo + " ");
     }
 
     @Override
