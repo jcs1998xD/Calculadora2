@@ -25,6 +25,7 @@ public class Calculadora2 extends Application {
         stage.setTitle("By Jorge");
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
     }
 
     /**

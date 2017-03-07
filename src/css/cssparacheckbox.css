@@ -1,8 +1,0 @@
-
-.button{
-    -fx-background-image:url("madera.jpg");
-}
-
-.button:hover{
-    -fx-text-fill: #ff0000;
-}
